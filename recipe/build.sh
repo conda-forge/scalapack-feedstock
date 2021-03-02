@@ -9,7 +9,7 @@ if [[ "$target_platform" == "osx-64" ]]; then
 fi
 
 mkdir build && cd build
-cmake \
+cmake ${CMAKE_ARGS} \
     $EXTRA_CMAKE \
     -DBUILD_SHARED_LIBS=ON \
     -DCMAKE_INSTALL_PREFIX="$PREFIX" \
