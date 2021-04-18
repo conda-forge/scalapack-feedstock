@@ -3,6 +3,9 @@
 export FC=mpifort
 export OPAL_PREFIX=$PREFIX
 
+# remove this in next version update where this is fixed
+sed -i.bak "s/ifort/dummy/g" CMakeLists.txt
+
 mkdir build && cd build
 cmake ${CMAKE_ARGS} \
     $EXTRA_CMAKE \
