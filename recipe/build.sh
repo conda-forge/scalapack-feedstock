@@ -1,6 +1,7 @@
 #!/bin/sh
 
 export FC=mpifort
+export CC=mpicc
 export OPAL_PREFIX=$PREFIX
 
 # remove this in next version update where this is fixed
