@@ -1,12 +1,7 @@
 #!/bin/sh
 
-if [[ "$target_platform" == "osx-64" ]]; then
-  TOOLS_DIR=$(dirname $($FC --print-libgcc-file-name))
-  if [[ ! -f "$TOOLS_DIR/ld" ]]; then
-    ln -sf $LD $TOOLS_DIR/ld
-    ln -sf $LD $BUILD_PREFIX/bin/ld
-  fi
-fi
+export FC=mpifort
+export OPAL_PREFIX=$PREFIX
 
 mkdir build && cd build
 cmake ${CMAKE_ARGS} \
