@@ -1,15 +1,14 @@
 #!/bin/sh
 
-if [[ "$target_platform" == "osx-64" ]]; then
-  TOOLS_DIR=$(dirname $($FC --print-libgcc-file-name))
-  if [[ ! -f "$TOOLS_DIR/ld" ]]; then
-    ln -sf $LD $TOOLS_DIR/ld
-    ln -sf $LD $BUILD_PREFIX/bin/ld
-  fi
-fi
+export FC=mpifort
+export CC=mpicc
+export OPAL_PREFIX=$PREFIX
+
+# remove this in next version update where this is fixed
+sed -i.bak "s/ifort/dummy/g" CMakeLists.txt
 
 mkdir build && cd build
-cmake \
+cmake ${CMAKE_ARGS} \
     $EXTRA_CMAKE \
     -DBUILD_SHARED_LIBS=ON \
     -DCMAKE_INSTALL_PREFIX="$PREFIX" \
