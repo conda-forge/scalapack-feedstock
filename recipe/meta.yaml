@@ -14,7 +14,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
@@ -24,6 +24,7 @@ requirements:
     - {{ compiler('c') }}
     - make
   host:
+    - gfortran_impl_osx-64  # [osx and arm64]
     - libblas
     - liblapack
     - {{ mpi }}
