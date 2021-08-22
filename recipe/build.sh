@@ -9,11 +9,11 @@ if [[ "$target_platform" == "osx-64" ]]; then
 fi
 
 mkdir build && cd build
-cmake \
+cmake ${CMAKE_ARGS} \
     $EXTRA_CMAKE \
     -DBUILD_SHARED_LIBS=ON \
-    -DCMAKE_INSTALL_PREFIX="$PREFIX" \
-    -DCMAKE_PREFIX_PATH="$PREFIX" \
+    -DCMAKE_CROSSCOMPILING=$CONDA_BUILD_CROSS_COMPILATION \
+    -DCMAKE_CROSSCOMPILING_EMULATOR=$CONDA_BUILD_CROSS_COMPILATION \
     -DCMAKE_BUILD_TYPE=Release \
     .. || (cat CMakeFiles/CMakeOutput.log && cat CMakeFiles/CMakeError.log && exit 1)
 
