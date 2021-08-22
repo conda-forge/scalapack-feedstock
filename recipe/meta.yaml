@@ -24,7 +24,7 @@ requirements:
     - {{ compiler('c') }}
     - make
   host:
-    - gfortran_impl_osx-64  # [osx and arm64]
+    - gfortran_osx-arm64  # [osx and arm64]
     - libblas
     - liblapack
     - {{ mpi }}
