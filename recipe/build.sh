@@ -16,7 +16,7 @@ then
   export OMPI_FCFLAGS=${FFLAGS}
 fi
 
-
+CFLAGS="$CFLAGS -std=gnu99"
 
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
   # This is only used by open-mpi's mpicc
