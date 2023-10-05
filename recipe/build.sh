@@ -1,5 +1,12 @@
 #!/bin/sh
 
+if [[ "$target_platform" == osx-* ]]
+then
+  export CFLAGS="$CFLAGS -std=gnu99 -Wno-implicit-function-declaration"
+  export CXXFLAGS="$CXXFLAGS -std=gnu99 -Wno-implicit-function-declaration"
+  export FFLAGS="$FFLAGS -std=gnu99 -Wno-implicit-function-declaration"
+fi
+
 if [[ "$target_platform" == "osx-64" ]]; then
   TOOLS_DIR=$(dirname $($FC --print-libgcc-file-name))
   if [[ ! -f "$TOOLS_DIR/ld" ]]; then
@@ -16,7 +23,7 @@ then
   export OMPI_FCFLAGS=${FFLAGS}
 fi
 
-export CFLAGS="$CFLAGS -std=gnu99"
+
 
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
   # This is only used by open-mpi's mpicc
@@ -44,4 +51,4 @@ cmake ${CMAKE_ARGS} \
     -DCMAKE_BUILD_TYPE=Release \
     .. || (cat CMakeFiles/CMakeOutput.log && cat CMakeFiles/CMakeError.log && exit 1)
 
-make install -j${CPU_COUNT}
+VERBOSE=1 make install -j${CPU_COUNT}
