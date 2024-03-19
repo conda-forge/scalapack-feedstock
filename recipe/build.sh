@@ -1,5 +1,14 @@
 #!/bin/sh
 
+if [[ "$target_platform" == osx-* ]]
+then
+  # Workaround for implicit function declarations on osx 
+  export CFLAGS="$CFLAGS -std=gnu99 -Wno-implicit-function-declaration"
+  export CXXFLAGS="$CXXFLAGS -std=gnu99 -Wno-implicit-function-declaration"
+  export FFLAGS="${FFLAGS} -fallow-argument-mismatch"
+  export OMPI_FCFLAGS=${FFLAGS}
+fi
+
 if [[ "$target_platform" == "osx-64" ]]; then
   TOOLS_DIR=$(dirname $($FC --print-libgcc-file-name))
   if [[ ! -f "$TOOLS_DIR/ld" ]]; then
@@ -8,7 +17,7 @@ if [[ "$target_platform" == "osx-64" ]]; then
   fi
 fi
 
-if [[ "$target_platform" == linux-* || "$target_platform" == "osx-arm64"  ]]
+if [[ "$target_platform" == linux-* ]]
 then
   # Workaround for https://github.com/conda-forge/scalapack-feedstock/pull/30#issuecomment-1061196317
   # As of March 2022, on macOS arm64 gfortran 9 is still used
@@ -44,4 +53,4 @@ cmake ${CMAKE_ARGS} \
     -DCMAKE_BUILD_TYPE=Release \
     .. || (cat CMakeFiles/CMakeOutput.log && cat CMakeFiles/CMakeError.log && exit 1)
 
-make install -j${CPU_COUNT}
+VERBOSE=1 make install -j${CPU_COUNT}
