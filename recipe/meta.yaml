@@ -14,9 +14,10 @@ source:
   sha256: {{ sha256 }}
   patches:
     - fortran_mangling_cross.patch
+    - high_mem_32bits.patch
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win]
 
 requirements:
@@ -56,3 +57,4 @@ extra:
     - davidbrochart
     - SylvainCorlay
     - traversaro
+    - gdonval
