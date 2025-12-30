@@ -39,7 +39,6 @@ export FC=mpifort
 mkdir build && cd build
 cmake ${CMAKE_ARGS} \
     $EXTRA_CMAKE \
-    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
     -DBLAS_LIBRARIES="blas" \
     -DLAPACK_LIBRARIES="lapack" \
     -DBUILD_SHARED_LIBS=ON \

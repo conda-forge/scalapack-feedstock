@@ -15,8 +15,8 @@ source:
   patches:
     - fortran_mangling_cross.patch
     - high_mem_32bits.patch
-#   - cmake_min_version.patch
-#   - blacs_cmake_min_version.patch
+    - cmake_min_version.patch
+    - blacs_cmake_min_version.patch
 
 build:
   number: 5
