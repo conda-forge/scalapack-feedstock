@@ -30,7 +30,7 @@ requirements:
     - cmake
     - {{ compiler('fortran') }}
     - {{ compiler('c') }}
-#   - {{ stdlib("c") }}
+    - {{ stdlib("c") }}
     - make
     - {{ mpi }}  # [mpi == 'openmpi' and build_platform != target_platform]
   host:
