@@ -15,10 +15,13 @@ source:
   patches:
     - fortran_mangling_cross.patch
     - high_mem_32bits.patch
+    - cmake_min_version.patch
+    - blacs_cmake_min_version.patch
 
 build:
-  number: 4
+  number: 5
   skip: true  # [win]
+  skip: true  # [mpi == 'mvapich' and target_platform not in ('linux-64', 'linux-aarch64')]
   run_exports:
     - {{ pin_subpackage("scalapack", max_pin="x.x") }}
 
@@ -27,7 +30,7 @@ requirements:
     - cmake
     - {{ compiler('fortran') }}
     - {{ compiler('c') }}
-    - {{ stdlib("c") }}
+    - {{ stdlib('c') }}
     - make
     - {{ mpi }}  # [mpi == 'openmpi' and build_platform != target_platform]
   host:
@@ -61,3 +64,4 @@ extra:
     - SylvainCorlay
     - traversaro
     - gdonval
+    - j34ni

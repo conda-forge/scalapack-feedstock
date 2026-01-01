@@ -1,3 +1,7 @@
 mpi:
   - mpich
   - openmpi
+  - mvapich  # [linux]
+
+mvapich:
+  - "4.1 shs_cuda_h*_1*" 
