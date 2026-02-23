@@ -19,7 +19,7 @@ source:
     - blacs_cmake_min_version.patch
 
 build:
-  number: 5
+  number: 6
   skip: true  # [win]
   skip: true  # [mpi == 'mvapich' and target_platform not in ('linux-64', 'linux-aarch64')]
   run_exports:
